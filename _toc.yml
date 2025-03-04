@@ -4,26 +4,25 @@
 format: jb-book
 root: intro
 parts:
-  - caption: "Week 6"
+  - caption: "Week 6-7"
     chapters:  
-    - file: homework/pyhw1
-    - file: lectures/lec17_to_19
-  - caption: "Week 7"
-    chapters:
-    - file: lectures/lec19_20
+    - file: lectures/lec17_18_19_WI25
   - caption: "Week 8"
     chapters:
-    - file: lectures/lec21_to_23  
+    - file: homework/pyhw1
+    - file: lectures/lec19_20_21_WI25
   - caption: "Week 9"
     chapters:
-      - file: homework/pyhw2
-      - file: homework/pyhw3
-      - file: lectures/lec23_24
-      - file: lectures/lec25_26
+    - file: homework/pyhw2    
+    - file: lectures/lec22_23_24_WI25
+    - file: lectures/lec24_25_26_WI25
   - caption: "Week 10"
     chapters:
+      - file: homework/pyhw3
+      - file: lectures/lec27_28_29_FA24
+  - caption: "Extra"
+    chapters:
       - file: homework/pyhw4
-      - file: lectures/lec27_28
 
 
 
