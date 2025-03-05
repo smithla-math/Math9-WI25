@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Python Homework #2" href="../homework/pyhw2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +149,17 @@
     
     
     <img src="../_static/ash-vapor.png" class="logo__image only-light" alt="Math 9 Winter 2025 - Home"/>
-    <script>document.write(`<img src="../_static/ash-vapor.png" class="logo__image only-dark" alt="Math 9 Winter 2025 - Home"/>`);</script>
+    <img src="../_static/ash-vapor.png" class="logo__image only-dark pst-js-only" alt="Math 9 Winter 2025 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -184,7 +173,6 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6-7</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lec17_18_19_WI25.html">Lectures 17, 18, 19: February 14, 29, 21</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
 <ul class="nav bd-sidenav">
@@ -213,9 +201,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,24 +352,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -446,8 +431,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ -5,  37, -18,  -2,  -1],
-       [ -6,  31,   6, -21,  36]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[23, 36, 38, 20, 33],
+       [ 6, 38, 23, 23, 37]])
 </pre></div>
 </div>
 </div>
@@ -577,7 +562,7 @@ randint(...) method of numpy.random.mtrand.RandomState instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([27,  6, 25,  3, 16,  5, 11, 30, 28,  2], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([33,  6, 23, 27, 36,  4,  4, 19, 23, 21], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -592,7 +577,7 @@ randint(...) method of numpy.random.mtrand.RandomState instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3, 25,  6,  3,  5], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([23, 23, 23, 27, 36], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -727,7 +712,7 @@ choice(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([27, 12, 66, 57, 60])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([93, 21, 75, 12, 12])
 </pre></div>
 </div>
 </div>
@@ -826,9 +811,9 @@ random(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.45189637, 0.28298168, 0.71302606, 0.11611723, 0.69248411],
-       [0.10829207, 0.21174047, 0.97924302, 0.99517121, 0.12283039],
-       [0.72709658, 0.03833569, 0.56616399, 0.60971177, 0.84214659]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.20270874, 0.78033051, 0.61144468, 0.87940903, 0.32854512],
+       [0.00138894, 0.80623484, 0.70503047, 0.58775537, 0.9687562 ],
+       [0.08535787, 0.38527396, 0.62909774, 0.68995654, 0.97296583]])
 </pre></div>
 </div>
 </div>
@@ -841,9 +826,9 @@ random(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3.44584341, 0.80122559, 4.15508792, 1.68190837, 1.13223964],
-       [3.82659211, 4.55850676, 2.78048203, 3.67432533, 3.55187541],
-       [3.36452635, 4.45129499, 2.9166865 , 0.61005391, 0.64095524]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.58349676, 1.94311595, 3.4948748 , 4.16537638, 3.06291873],
+       [4.21616256, 0.85010516, 4.70749119, 1.17201819, 2.51860952],
+       [4.55334169, 1.18748359, 3.86777807, 3.31513624, 0.1054319 ]])
 </pre></div>
 </div>
 </div>
@@ -856,9 +841,9 @@ random(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2.5338375 ,  1.91829307,  2.55996587,  2.99846598,  0.44500195],
-       [ 1.26961066,  0.97584872,  3.15536889,  3.31662461,  3.70231894],
-       [-0.7357316 ,  2.65955489,  3.48273625,  0.62802291,  2.14423118]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.83140611, -0.87330205,  1.54344869,  3.74695857,  1.9957954 ],
+       [-0.81729172,  3.75010213,  1.69428237,  1.71834214,  1.76409821],
+       [-0.39674671,  2.74049672, -0.33139652,  1.34108869,  0.66021726]])
 </pre></div>
 </div>
 </div>
@@ -982,8 +967,8 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.04872393, 2.1200825 , 1.82795901, 1.84837639, 2.00548003,
-       1.86653844, 2.07194693, 1.95303345, 1.85075456, 2.17810583])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.16689283, 1.93172044, 1.94044218, 2.0949393 , 2.13028662,
+       1.96037919, 1.85991399, 1.89127802, 2.03435559, 2.0255439 ])
 </pre></div>
 </div>
 </div>
@@ -994,17 +979,17 @@ normal(...) method of numpy.random._generator.Generator instance
 </section>
 <section id="broadcasting-in-numpy">
 <h3>Broadcasting in Numpy<a class="headerlink" href="#broadcasting-in-numpy" title="Link to this heading">#</a></h3>
-<p><img alt="12.jpg" src="lectures/attachment:13017f1b-8a19-4735-91e5-5e3087d50940.jpg" />
-<img alt="13.jpg" src="lectures/attachment:3cb0aa9c-d2ec-41e7-af09-ed25aefd48f5.jpg" />
-<img alt="14.jpg" src="lectures/attachment:cc23f339-d325-46ad-99e0-6e43fcc4dce1.jpg" />
-<img alt="15.jpg" src="lectures/attachment:59fa80c6-6b5e-480b-8021-46474fd12e48.jpg" />
-<img alt="16.jpg" src="lectures/attachment:6f5610ba-3af8-442d-b4f0-ca6ae47c918d.jpg" />
-<img alt="17.jpg" src="lectures/attachment:648b3ca8-3251-4564-b785-b1f0a9c6366a.jpg" />
-<img alt="18.jpg" src="lectures/attachment:e58958eb-759e-4a81-af96-c39b9aca7561.jpg" />
-<img alt="19.jpg" src="lectures/attachment:4462e636-94bb-4c94-99b4-f73791d193ae.jpg" />
-<img alt="20.jpg" src="lectures/attachment:27d95193-e5b2-4ccd-8935-b8fa331e74f5.jpg" />
-<img alt="21.jpg" src="lectures/attachment:9abfcd9c-070e-4f45-bbbc-1da7b2de09ac.jpg" />
-<img alt="22.jpg" src="lectures/attachment:b46ae277-272a-4a4a-b5fc-6f49d83753ae.jpg" /></p>
+<p><img alt="" src="../_images/12.jpg" />
+<img alt="" src="../_images/13.jpg" />
+<img alt="" src="../_images/14.jpg" />
+<img alt="" src="../_images/15.jpg" />
+<img alt="" src="../_images/16.jpg" />
+<img alt="" src="../_images/17.jpg" />
+<img alt="" src="../_images/18.jpg" />
+<img alt="" src="../_images/19.jpg" />
+<img alt="" src="../_images/20.jpg" />
+<img alt="" src="../_images/21.jpg" />
+<img alt="" src="../_images/22.jpg" /></p>
 </section>
 </section>
 <section id="changing-rows-and-columns-and-examples-of-broadcasting">
@@ -1998,26 +1983,26 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-48,
- 46,
- 38,
- -41,
- 39,
- 28,
- -13,
- -31,
- 30,
- 11,
- -45,
- -46,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[14,
+ 41,
+ 40,
+ -22,
+ -37,
+ -42,
+ 49,
+ -3,
+ -2,
+ -11,
+ -32,
  1,
- 5,
- 26,
- 44,
- 50,
- -10,
+ 2,
+ -24,
+ -25,
+ -28,
  -47,
- -31]
+ 45,
+ 42,
+ 25]
 </pre></div>
 </div>
 </div>
@@ -2048,7 +2033,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 5]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3, -2, 1, 2]
 </pre></div>
 </div>
 </div>
@@ -2065,7 +2050,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 5]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3, -2, 1, 2]
 </pre></div>
 </div>
 </div>
@@ -2078,7 +2063,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 5]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3, -2, 1, 2]
 </pre></div>
 </div>
 </div>
@@ -2091,7 +2076,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 5]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3, -2, 1, 2]
 </pre></div>
 </div>
 </div>
@@ -2103,7 +2088,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 5]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3, -2, 1, 2]
 </pre></div>
 </div>
 </div>
@@ -2116,8 +2101,8 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-48,  46,  38, -41,  39,  28, -13, -31,  30,  11, -45, -46,   1,
-         5,  26,  44,  50, -10, -47, -31], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 14,  41,  40, -22, -37, -42,  49,  -3,  -2, -11, -32,   1,   2,
+       -24, -25, -28, -47,  45,  42,  25], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2129,9 +2114,9 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True, False, False,  True, False, False,  True,  True, False,
-       False,  True,  True,  True,  True, False, False, False,  True,
-        True,  True])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False,  True,  True,  True, False,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True, False,
+       False, False])
 </pre></div>
 </div>
 </div>
@@ -2145,8 +2130,8 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[False False False False False False False False False False False False
-  True  True False False False False False False]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[False False False False False False False  True  True False False  True
+  True False False False False False False False]
 </pre></div>
 </div>
 </div>
@@ -2159,7 +2144,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 5], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3, -2,  1,  2], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2171,7 +2156,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 5], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3, -2,  1,  2], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2185,8 +2170,8 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
-        True,  True,  True, False, False,  True,  True,  True,  True,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True,  True,  True,  True, False, False,
+        True,  True, False, False,  True,  True,  True,  True,  True,
         True,  True])
 </pre></div>
 </div>
@@ -2199,9 +2184,9 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False,  True,  True, False,  True,  True, False, False,  True,
-        True, False, False,  True,  True,  True,  True,  True, False,
-       False, False])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True, False, False, False,  True,  True,  True,
+       False, False,  True,  True, False, False, False, False,  True,
+        True,  True])
 </pre></div>
 </div>
 </div>
@@ -2213,7 +2198,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 5], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3, -2,  1,  2], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2225,8 +2210,8 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
-       False, False, False,  True,  True, False, False, False, False,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False,  True,  True,
+       False, False,  True,  True, False, False, False, False, False,
        False, False])
 </pre></div>
 </div>
@@ -2239,7 +2224,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 5], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3, -2,  1,  2], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2306,7 +2291,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2 3 5 5]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3 1 6 4]
 </pre></div>
 </div>
 </div>
@@ -2318,7 +2303,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
@@ -2330,7 +2315,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
@@ -2348,7 +2333,7 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4
 </pre></div>
 </div>
 </div>
@@ -2367,11 +2352,11 @@ normal(...) method of numpy.random._generator.Generator instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 29.9 s
-Wall time: 30.5 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 12.3 s
+Wall time: 12.3 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.284184
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.284856
 </pre></div>
 </div>
 </div>
@@ -2385,16 +2370,16 @@ Wall time: 30.5 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[3 5 6 2]
- [4 4 6 5]
- [5 2 5 4]
- [4 1 4 5]
- [5 2 2 2]
- [4 1 1 3]
- [5 1 6 1]
- [6 1 2 6]
- [1 2 6 5]
- [5 3 3 3]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[4 3 5 2]
+ [4 3 1 3]
+ [5 3 1 3]
+ [5 5 3 5]
+ [5 6 1 1]
+ [4 4 3 3]
+ [6 1 5 4]
+ [6 4 1 4]
+ [1 2 4 5]
+ [2 1 5 5]]
 </pre></div>
 </div>
 </div>
@@ -2510,16 +2495,16 @@ apply_along_axis(func1d, axis, arr, *args, **kwargs)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[3 5 6 2]
- [4 4 6 5]
- [5 2 5 4]
- [4 1 4 5]
- [5 2 2 2]
- [4 1 1 3]
- [5 1 6 1]
- [6 1 2 6]
- [1 2 6 5]
- [5 3 3 3]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[4 3 5 2]
+ [4 3 1 3]
+ [5 3 1 3]
+ [5 5 3 5]
+ [5 6 1 1]
+ [4 4 3 3]
+ [6 1 5 4]
+ [6 4 1 4]
+ [1 2 4 5]
+ [2 1 5 5]]
 </pre></div>
 </div>
 </div>
@@ -2543,7 +2528,7 @@ apply_along_axis(func1d, axis, arr, *args, **kwargs)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6, 6, 5, 5, 5, 4, 6, 6, 6, 5], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5, 4, 5, 5, 6, 4, 6, 6, 5, 5], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2555,7 +2540,7 @@ apply_along_axis(func1d, axis, arr, *args, **kwargs)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False,  True,  True,  True, False, False, False, False,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True, False,  True,  True, False, False, False, False,  True,
         True])
 </pre></div>
 </div>
@@ -2569,7 +2554,7 @@ apply_along_axis(func1d, axis, arr, *args, **kwargs)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6, 5, 6, 6], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6, 6, 5, 5], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2583,7 +2568,7 @@ apply_along_axis(func1d, axis, arr, *args, **kwargs)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2
 </pre></div>
 </div>
 </div>
@@ -2599,11 +2584,11 @@ apply_along_axis(func1d, axis, arr, *args, **kwargs)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 11 s
-Wall time: 11.1 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 4.62 s
+Wall time: 4.64 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.284594
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.284911
 </pre></div>
 </div>
 </div>
@@ -2631,7 +2616,7 @@ Wall time: 11.1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 2, 6, ..., 4, 5, 4], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5, 6, 6, ..., 5, 6, 5], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2643,7 +2628,7 @@ Wall time: 11.1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 2, 6, ..., 4, 5, 4], dtype=int64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5, 6, 6, ..., 5, 6, 5], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -2657,7 +2642,7 @@ Wall time: 11.1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
 </pre></div>
 </div>
 </div>
@@ -2670,8 +2655,8 @@ Wall time: 11.1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
-       False])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True, False,  True,  True, False, False, False, False,  True,
+        True])
 </pre></div>
 </div>
 </div>
@@ -2696,7 +2681,7 @@ Wall time: 11.1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5
 </pre></div>
 </div>
 </div>
@@ -2714,14 +2699,14 @@ Wall time: 11.1 s
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">118</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\numpy\core\_methods.py:106,</span> in <span class="ni">_mean</span><span class="nt">(a, axis, dtype, out, keepdims, where)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\numpy\core\_methods.py:106,</span> in <span class="ni">_mean</span><span class="nt">(a, axis, dtype, out, keepdims, where)</span>
 <span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">asanyarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="n">is_float16_result</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="ne">--&gt; </span><span class="mi">106</span> <span class="n">rcount</span> <span class="o">=</span> <span class="n">_count_reduce_items</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="k">if</span> <span class="n">rcount</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">where</span> <span class="ow">is</span> <span class="kc">True</span> <span class="k">else</span> <span class="n">umr_any</span><span class="p">(</span><span class="n">rcount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Mean of empty slice.&quot;</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\numpy\core\_methods.py:77,</span> in <span class="ni">_count_reduce_items</span><span class="nt">(arr, axis, keepdims, where)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\numpy\core\_methods.py:77,</span> in <span class="ni">_count_reduce_items</span><span class="nt">(arr, axis, keepdims, where)</span>
 <span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="n">items</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="g g-Whitespace">     </span><span class="mi">76</span>     <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axis</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">77</span>         <span class="n">items</span> <span class="o">*=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">mu</span><span class="o">.</span><span class="n">normalize_axis_index</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span><span class="p">)]</span>
@@ -2771,10 +2756,10 @@ max(...) method of numpy.ndarray instance
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: total: 46.9 ms
-Wall time: 43.8 ms
+Wall time: 40.9 ms
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.285435
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.284705
 </pre></div>
 </div>
 </div>
@@ -2783,9 +2768,9 @@ Wall time: 43.8 ms
 </section>
 <section id="more-on-the-axis-keyword-argument">
 <h2>More on the <code class="docutils literal notranslate"><span class="pre">axis</span></code> keyword argument<a class="headerlink" href="#more-on-the-axis-keyword-argument" title="Link to this heading">#</a></h2>
-<p><img alt="23.jpg" src="lectures/attachment:d5ecbbeb-e2a3-4ceb-9ece-2b82599782f0.jpg" />
-<img alt="24.jpg" src="lectures/attachment:9bc12ddd-d482-47c3-b087-d76e4e45f8b5.jpg" />
-<img alt="25.jpg" src="lectures/attachment:2dc728dc-64ce-421b-ade4-21b941ecd4ea.jpg" /></p>
+<p><img alt="" src="../_images/23.jpg" />
+<img alt="" src="../_images/24.jpg" />
+<img alt="" src="../_images/25.jpg" /></p>
 </section>
 </section>
 
@@ -2844,7 +2829,8 @@ Wall time: 43.8 ms
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2916,8 +2902,8 @@ By Christopher Davis, Yasmeen Baki, and Luke Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Python Homework #3" href="../homework/pyhw3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +149,17 @@
     
     
     <img src="../_static/ash-vapor.png" class="logo__image only-light" alt="Math 9 Winter 2025 - Home"/>
-    <script>document.write(`<img src="../_static/ash-vapor.png" class="logo__image only-dark" alt="Math 9 Winter 2025 - Home"/>`);</script>
+    <img src="../_static/ash-vapor.png" class="logo__image only-dark pst-js-only" alt="Math 9 Winter 2025 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -184,7 +173,6 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6-7</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lec17_18_19_WI25.html">Lectures 17, 18, 19: February 14, 29, 21</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
 <ul class="nav bd-sidenav">
@@ -213,9 +201,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -359,24 +352,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -549,7 +534,7 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 <span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\matplotlib\axes\_axes.py:1779,</span> in <span class="ni">Axes.plot</span><span class="nt">(self, scalex, scaley, data, *args, **kwargs)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\axes\_axes.py:1779,</span> in <span class="ni">Axes.plot</span><span class="nt">(self, scalex, scaley, data, *args, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1536</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">   </span><span class="mi">1537</span><span class="sd"> Plot y versus x as lines and/or markers.</span>
 <span class="g g-Whitespace">   </span><span class="mi">1538</span><span class="sd"> </span>
@@ -561,13 +546,13 @@ document.write(`
 <span class="g g-Whitespace">   </span><span class="mi">1780</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1781</span>     <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\matplotlib\axes\_base.py:296,</span> in <span class="ni">_process_plot_var_args.__call__</span><span class="nt">(self, axes, data, *args, **kwargs)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\axes\_base.py:296,</span> in <span class="ni">_process_plot_var_args.__call__</span><span class="nt">(self, axes, data, *args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">294</span>     <span class="n">this</span> <span class="o">+=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="g g-Whitespace">    </span><span class="mi">295</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 <span class="ne">--&gt; </span><span class="mi">296</span> <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_args</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">297</span>     <span class="n">axes</span><span class="p">,</span> <span class="n">this</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">ambiguous_fmt_datakey</span><span class="o">=</span><span class="n">ambiguous_fmt_datakey</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\matplotlib\axes\_base.py:486,</span> in <span class="ni">_process_plot_var_args._plot_args</span><span class="nt">(self, axes, tup, kwargs, return_kwargs, ambiguous_fmt_datakey)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\axes\_base.py:486,</span> in <span class="ni">_process_plot_var_args._plot_args</span><span class="nt">(self, axes, tup, kwargs, return_kwargs, ambiguous_fmt_datakey)</span>
 <span class="g g-Whitespace">    </span><span class="mi">483</span>     <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">update_units</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">485</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
 <span class="ne">--&gt; </span><span class="mi">486</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x and y must have same first dimension, but &quot;</span>
@@ -643,21 +628,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
-</pre></div>
-</div>
+<img alt="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" src="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" />
 </div>
 </div>
 <p>Maybe you’re not sure which folder you’re working in. Here’s how we can check. I’m going to remove the output when I post these online, just because I don’t want my file paths on the internet :)</p>
@@ -668,7 +639,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;C:\\Users\\lukea\\Documents\\GitHub\\Math9-WI25\\lectures&#39;
 </pre></div>
 </div>
 </div>
@@ -681,7 +652,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;lec17_18_19_WI25.ipynb&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;.ipynb_checkpoints&#39;,
+ &#39;anor-londo.png&#39;,
+ &#39;ash-lake-crop.png&#39;,
+ &#39;ash-lake.png&#39;,
+ &#39;images&#39;,
+ &#39;lec17_18_19_WI25.ipynb&#39;,
  &#39;lec19_20_21_WI25.ipynb&#39;,
  &#39;lec22_23_24_WI25.ipynb&#39;,
  &#39;lec24_25_26_WI25.ipynb&#39;,
@@ -698,12 +674,27 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [WinError 3] The system cannot find the path specified: &#39;images&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;12.jpg&#39;,
+ &#39;13.jpg&#39;,
+ &#39;14.jpg&#39;,
+ &#39;15.jpg&#39;,
+ &#39;16.jpg&#39;,
+ &#39;17.jpg&#39;,
+ &#39;18.jpg&#39;,
+ &#39;19.jpg&#39;,
+ &#39;20.jpg&#39;,
+ &#39;21.jpg&#39;,
+ &#39;22.jpg&#39;,
+ &#39;23.jpg&#39;,
+ &#39;24.jpg&#39;,
+ &#39;25.jpg&#39;,
+ &#39;26.jpg&#39;,
+ &#39;27.jpg&#39;,
+ &#39;magus.webp&#39;,
+ &#39;MW-place-Ghostgate.jpg&#39;,
+ &#39;Red_room.jpeg&#39;,
+ &#39;SI-place-Crucible_Statue.jpg&#39;,
+ &#39;zeal.webp&#39;]
 </pre></div>
 </div>
 </div>
@@ -721,14 +712,14 @@ document.write(`
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;Red_room.jpeg&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
 <span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
 <span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
 
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\Red_room.jpeg&#39;
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\lukea\\Documents\\GitHub\\Math9-WI25\\lectures\\Red_room.jpeg&#39;
 </pre></div>
 </div>
 </div>
@@ -760,21 +751,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\images\\Red_room.jpeg&#39;
-</pre></div>
-</div>
+<img alt="../_images/9aa7041886dbe8028ad310758306f0c6774ed44f2a54a991ff1c9fa7cd4ab760.png" src="../_images/9aa7041886dbe8028ad310758306f0c6774ed44f2a54a991ff1c9fa7cd4ab760.png" />
 </div>
 </div>
 <p>How could I get all of the jpgs in a folder?</p>
@@ -785,12 +762,27 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [WinError 3] The system cannot find the path specified: &#39;images&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;12.jpg&#39;,
+ &#39;13.jpg&#39;,
+ &#39;14.jpg&#39;,
+ &#39;15.jpg&#39;,
+ &#39;16.jpg&#39;,
+ &#39;17.jpg&#39;,
+ &#39;18.jpg&#39;,
+ &#39;19.jpg&#39;,
+ &#39;20.jpg&#39;,
+ &#39;21.jpg&#39;,
+ &#39;22.jpg&#39;,
+ &#39;23.jpg&#39;,
+ &#39;24.jpg&#39;,
+ &#39;25.jpg&#39;,
+ &#39;26.jpg&#39;,
+ &#39;27.jpg&#39;,
+ &#39;magus.webp&#39;,
+ &#39;MW-place-Ghostgate.jpg&#39;,
+ &#39;Red_room.jpeg&#39;,
+ &#39;SI-place-Crucible_Statue.jpg&#39;,
+ &#39;zeal.webp&#39;]
 </pre></div>
 </div>
 </div>
@@ -803,12 +795,24 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;jpg&quot;</span><span class="p">]</span>
-
-<span class="ne">FileNotFoundError</span>: [WinError 3] The system cannot find the path specified: &#39;images&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;12.jpg&#39;,
+ &#39;13.jpg&#39;,
+ &#39;14.jpg&#39;,
+ &#39;15.jpg&#39;,
+ &#39;16.jpg&#39;,
+ &#39;17.jpg&#39;,
+ &#39;18.jpg&#39;,
+ &#39;19.jpg&#39;,
+ &#39;20.jpg&#39;,
+ &#39;21.jpg&#39;,
+ &#39;22.jpg&#39;,
+ &#39;23.jpg&#39;,
+ &#39;24.jpg&#39;,
+ &#39;25.jpg&#39;,
+ &#39;26.jpg&#39;,
+ &#39;27.jpg&#39;,
+ &#39;MW-place-Ghostgate.jpg&#39;,
+ &#39;SI-place-Crucible_Statue.jpg&#39;]
 </pre></div>
 </div>
 </div>
@@ -821,12 +825,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;png&quot;</span><span class="p">)]</span>
-
-<span class="ne">FileNotFoundError</span>: [WinError 3] The system cannot find the path specified: &#39;images&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
 </pre></div>
 </div>
 </div>
@@ -838,12 +837,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;webp&quot;</span><span class="p">)</span> <span class="p">]</span>
-
-<span class="ne">FileNotFoundError</span>: [WinError 3] The system cannot find the path specified: &#39;images&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;magus.webp&#39;, &#39;zeal.webp&#39;]
 </pre></div>
 </div>
 </div>
@@ -858,16 +852,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;webp&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
-
-<span class="ne">FileNotFoundError</span>: [WinError 3] The system cannot find the path specified: &#39;images&#39;
-</pre></div>
-</div>
+<img alt="../_images/d2ff229eac484c7a0f7cac090a13d904750f816fe242acc73b15733f0e0f9276.png" src="../_images/d2ff229eac484c7a0f7cac090a13d904750f816fe242acc73b15733f0e0f9276.png" />
+<img alt="../_images/4a52bcbce22f1c07c57a44dbeee64af0cd6458fd5820a624d0e0a42f62813874.png" src="../_images/4a52bcbce22f1c07c57a44dbeee64af0cd6458fd5820a624d0e0a42f62813874.png" />
 </div>
 </div>
 </section>
@@ -879,23 +865,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -904,14 +873,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">img</span>
-
-<span class="ne">NameError</span>: name &#39;img&#39; is not defined
-</pre></div>
-</div>
+<img alt="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" src="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -921,12 +883,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">29</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">type</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;img&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PIL.PngImagePlugin.PngImageFile
 </pre></div>
 </div>
 </div>
@@ -938,16 +895,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">30</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;img&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -956,19 +903,55 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2.        , -1.8       , -1.76994819, ..., -1.76929235,
-        -1.76929235, -1.76929235],
-       [-1.995996  , -1.79904502, -1.76990863, ..., -1.76929235,
-        -1.76929235, -1.76929235],
-       [-1.99199199, -1.7981021 , -1.76987075, ..., -1.76929235,
-        -1.76929235, -1.76929235],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 83, 161, 148],
+        [ 83, 161, 148],
+        [ 83, 161, 148],
+        ...,
+        [ 94, 157, 140],
+        [ 94, 157, 140],
+        [ 94, 157, 140]],
+
+       [[ 83, 161, 148],
+        [ 83, 161, 148],
+        [ 83, 161, 148],
+        ...,
+        [ 93, 156, 139],
+        [ 93, 156, 139],
+        [ 93, 156, 139]],
+
+       [[ 83, 161, 148],
+        [ 83, 161, 148],
+        [ 83, 161, 148],
+        ...,
+        [ 93, 156, 139],
+        [ 92, 155, 138],
+        [ 92, 155, 138]],
+
        ...,
-       [ 1.99199199,  1.3942288 ,  0.89267945, ..., -1.77439792,
-        -1.76931097, -1.76929235],
-       [ 1.995996  ,  1.39711576,  0.89583318, ..., -1.78997896,
-        -1.76959308, -1.76929242],
-       [ 2.        ,  1.4       ,  0.89896907, ..., -1.82919995,
-        -1.77171581, -1.76929656]])
+
+       [[117, 128, 120],
+        [140, 151, 143],
+        [152, 163, 155],
+        ...,
+        [113, 126, 119],
+        [117, 130, 123],
+        [121, 134, 127]],
+
+       [[128, 139, 131],
+        [129, 140, 132],
+        [124, 135, 127],
+        ...,
+        [112, 125, 118],
+        [114, 127, 120],
+        [116, 129, 122]],
+
+       [[130, 141, 133],
+        [118, 129, 121],
+        [105, 117, 107],
+        ...,
+        [119, 132, 125],
+        [120, 133, 126],
+        [121, 134, 127]]], dtype=uint8)
 </pre></div>
 </div>
 </div>
@@ -992,7 +975,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 8)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(480, 480, 3)
 </pre></div>
 </div>
 </div>
@@ -1006,7 +989,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 83, 161, 148], dtype=uint8)
 </pre></div>
 </div>
 </div>
@@ -1020,7 +1003,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-271.92477103312785
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -1032,7 +1015,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>374.4567901234787
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>255
 </pre></div>
 </div>
 </div>
@@ -1045,7 +1028,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(480, 180, 3)
 </pre></div>
 </div>
 </div>
@@ -1058,14 +1041,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">38</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">img</span>
-
-<span class="ne">NameError</span>: name &#39;img&#39; is not defined
-</pre></div>
-</div>
+<img alt="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" src="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1075,9 +1051,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=0x1000&gt;
-</pre></div>
-</div>
+<img alt="../_images/e6f413030d576962eaaf092feb0f613f386837e3ce7cbf32810fd972d3dc9086.png" src="../_images/e6f413030d576962eaaf092feb0f613f386837e3ce7cbf32810fd972d3dc9086.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1087,9 +1061,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=8x1000&gt;
-</pre></div>
-</div>
+<img alt="../_images/0e5cb5e357502ac05ff5142de9f43799df38d8b9daf47e8d2066883455fb5d95.png" src="../_images/0e5cb5e357502ac05ff5142de9f43799df38d8b9daf47e8d2066883455fb5d95.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1105,25 +1077,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">41</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">img</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
-</pre></div>
-</div>
+<img alt="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" src="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1140,9 +1094,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=8x1000&gt;
-</pre></div>
-</div>
+<img alt="../_images/c39f307ec901f645bb1f9f2c949272003bc6b0a831b9d97b3bad8cac756d810f.png" src="../_images/c39f307ec901f645bb1f9f2c949272003bc6b0a831b9d97b3bad8cac756d810f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1153,15 +1105,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">44</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr_flip</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,::]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr_flip</span><span class="p">)</span>
-
-<span class="ne">IndexError</span>: too many indices for array: array is 2-dimensional, but 3 were indexed
-</pre></div>
-</div>
+<img alt="../_images/d0317c9891e6c2a4ff929daed126fd19fcbada84ee865c11af5cf7c24b2af039.png" src="../_images/d0317c9891e6c2a4ff929daed126fd19fcbada84ee865c11af5cf7c24b2af039.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1172,15 +1116,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">45</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr_squash</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[::</span><span class="mi">2</span><span class="p">,:,::]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr_squash</span><span class="p">)</span>
-
-<span class="ne">IndexError</span>: too many indices for array: array is 2-dimensional, but 3 were indexed
-</pre></div>
-</div>
+<img alt="../_images/7ba9651d69c0e1271145a03c907cfdd7795f253ed801a4e3c3fddd1029a7169a.png" src="../_images/7ba9651d69c0e1271145a03c907cfdd7795f253ed801a4e3c3fddd1029a7169a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1195,23 +1131,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>images\Red_room.jpeg
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">46</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">s</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;images&quot;</span><span class="p">,</span><span class="s1">&#39;Red_room.jpeg&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\images\\Red_room.jpeg&#39;
-</pre></div>
-</div>
+<img alt="../_images/9aa7041886dbe8028ad310758306f0c6774ed44f2a54a991ff1c9fa7cd4ab760.png" src="../_images/9aa7041886dbe8028ad310758306f0c6774ed44f2a54a991ff1c9fa7cd4ab760.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1222,20 +1142,55 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">47</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr_red</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">arr_red</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 80,  25,  31],
+        [ 76,  21,  27],
+        [ 70,  15,  21],
+        ...,
+        [148,  52,  63],
+        [149,  53,  64],
+        [146,  53,  63]],
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
+       [[ 82,  27,  33],
+        [ 81,  26,  32],
+        [ 79,  24,  30],
+        ...,
+        [152,  56,  67],
+        [152,  56,  67],
+        [148,  55,  65]],
 
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\images\\Red_room.jpeg&#39;
+       [[ 75,  20,  26],
+        [ 79,  24,  30],
+        [ 81,  26,  32],
+        ...,
+        [153,  57,  68],
+        [152,  56,  67],
+        [146,  53,  63]],
+
+       ...,
+
+       [[175, 143, 122],
+        [174, 142, 121],
+        [174, 142, 121],
+        ...,
+        [115, 103, 107],
+        [115, 103, 107],
+        [115, 103, 107]],
+
+       [[177, 145, 124],
+        [175, 143, 122],
+        [175, 143, 122],
+        ...,
+        [114, 102, 106],
+        [114, 102, 106],
+        [114, 102, 106]],
+
+       [[179, 147, 126],
+        [177, 145, 124],
+        [176, 144, 123],
+        ...,
+        [116, 104, 108],
+        [116, 104, 108],
+        [116, 104, 108]]], dtype=uint8)
 </pre></div>
 </div>
 </div>
@@ -1248,15 +1203,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">48</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr_r_crop</span> <span class="o">=</span> <span class="n">arr_red</span><span class="p">[</span><span class="mi">400</span><span class="p">:</span><span class="mi">880</span><span class="p">,</span><span class="mi">200</span><span class="p">:</span><span class="mi">680</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr_r_crop</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;arr_red&#39; is not defined
-</pre></div>
-</div>
+<img alt="../_images/00f615b7c0a31b6e8729500aa86712c3429d8114f4559390f438a62d0689ba08.png" src="../_images/00f615b7c0a31b6e8729500aa86712c3429d8114f4559390f438a62d0689ba08.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1267,15 +1214,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">49</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#combine the two images by adding. Each color in each pixel is added together</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr</span> <span class="o">+</span> <span class="n">arr_r_crop</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;arr_r_crop&#39; is not defined
-</pre></div>
-</div>
+<img alt="../_images/16989432f584265b8ccdea2127b5cce9ece1ec6e09e081d4abea627d58b993e4.png" src="../_images/16989432f584265b8ccdea2127b5cce9ece1ec6e09e081d4abea627d58b993e4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1287,16 +1226,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Better to weight how these picture are blended. Make sure values are integers, PIL is somewhat picky.</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.4</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">weight</span><span class="p">)</span><span class="o">*</span><span class="n">arr</span> <span class="o">+</span> <span class="n">weight</span><span class="o">*</span><span class="n">arr_r_crop</span><span class="p">))</span>
-
-<span class="ne">NameError</span>: name &#39;arr_r_crop&#39; is not defined
-</pre></div>
-</div>
+<img alt="../_images/27f7b6de71d97939c3a1522c5b8cd036b0d379ba567424ad48da3379a71725d5.png" src="../_images/27f7b6de71d97939c3a1522c5b8cd036b0d379ba567424ad48da3379a71725d5.png" />
 </div>
 </div>
 </section>
@@ -1310,24 +1240,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">51</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Let’s start by getting a horizontal band.</p>
 <div class="cell docutils container">
@@ -1337,15 +1249,23 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=8x100&gt;
-</pre></div>
-</div>
+<img alt="../_images/5e1d90f6446401945200baa3bef12c94914b832e16b31b8acc7a14a9a978421f.png" src="../_images/5e1d90f6446401945200baa3bef12c94914b832e16b31b8acc7a14a9a978421f.png" />
 </div>
 </div>
 <p>This is going to throw an error!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">53</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="ne">ValueError</span>: assignment destination is read-only
 </pre></div>
 </div>
 </div>
@@ -1373,12 +1293,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">56</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;img&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>48
 </pre></div>
 </div>
 </div>
@@ -1391,7 +1306,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64128
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>144
 </pre></div>
 </div>
 </div>
@@ -1403,7 +1318,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64128
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>691344
 </pre></div>
 </div>
 </div>
@@ -1460,9 +1375,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=8x1000&gt;
-</pre></div>
-</div>
+<img alt="../_images/49f6aa493407114c3d1edf148b3d309f721527b1ae384e894fea034e50f0a8f8.png" src="../_images/49f6aa493407114c3d1edf148b3d309f721527b1ae384e894fea034e50f0a8f8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1479,9 +1392,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=8x1000&gt;
-</pre></div>
-</div>
+<img alt="../_images/972127492fc8d86d90b7a219201cca4e1e5429a6e6e21c07b9ba5927242a72fb.png" src="../_images/972127492fc8d86d90b7a219201cca4e1e5429a6e6e21c07b9ba5927242a72fb.png" />
 </div>
 </div>
 <p>Remember, this was the top-left-most color from earlier:</p>
@@ -1499,7 +1410,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 8)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 480, 3)
 </pre></div>
 </div>
 </div>
@@ -1522,16 +1433,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">70</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">B</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span>
-
-<span class="ne">ValueError</span>: could not broadcast input array from shape (3,) into shape (100,8)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1540,9 +1441,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=8x1000&gt;
-</pre></div>
-</div>
+<img alt="../_images/81a3b53cb3bc4a26e6e8fb79bc91e2dbfbe9ae957936badc1fb43a3b57489fac.png" src="../_images/81a3b53cb3bc4a26e6e8fb79bc91e2dbfbe9ae957936badc1fb43a3b57489fac.png" />
 </div>
 </div>
 <p>Just for fun! From color picker:</p>
@@ -1552,16 +1451,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">72</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">B</span><span class="p">[</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">119</span><span class="p">,</span> <span class="mi">152</span><span class="p">,</span> <span class="mi">181</span><span class="p">])</span>
-
-<span class="ne">ValueError</span>: could not broadcast input array from shape (3,) into shape (100,8)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1570,9 +1459,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PIL.Image.Image image mode=F size=8x1000&gt;
-</pre></div>
-</div>
+<img alt="../_images/5739d7f7cf5823f24407e16dab72eb7a11a27205a117a334a0debe8f5574b1f4.png" src="../_images/5739d7f7cf5823f24407e16dab72eb7a11a27205a117a334a0debe8f5574b1f4.png" />
 </div>
 </div>
 </section>
@@ -1595,7 +1482,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3277,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\PIL\Image.py:3277,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3276</span> <span class="k">try</span><span class="p">:</span>
 <span class="ne">-&gt; </span><span class="mi">3277</span>     <span class="n">mode</span><span class="p">,</span> <span class="n">rawmode</span> <span class="o">=</span> <span class="n">_fromarray_typemap</span><span class="p">[</span><span class="n">typekey</span><span class="p">]</span>
 <span class="g g-Whitespace">   </span><span class="mi">3278</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -1608,7 +1495,7 @@ document.write(`
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">75</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3281,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
+<span class="nn">File C:\ProgramData\anaconda3\Lib\site-packages\PIL\Image.py:3281,</span> in <span class="ni">fromarray</span><span class="nt">(obj, mode)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3279</span>         <span class="n">typekey_shape</span><span class="p">,</span> <span class="n">typestr</span> <span class="o">=</span> <span class="n">typekey</span>
 <span class="g g-Whitespace">   </span><span class="mi">3280</span>         <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Cannot handle this data type: </span><span class="si">{</span><span class="n">typekey_shape</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">typestr</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="ne">-&gt; </span><span class="mi">3281</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
@@ -1934,26 +1821,6 @@ NEAREST
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">86</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1962,11 +1829,55 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[255,   0,   0],
-        [  0, 255,   0]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 83, 161, 148],
+        [ 83, 161, 148],
+        [ 83, 161, 148],
+        ...,
+        [ 94, 157, 140],
+        [ 94, 157, 140],
+        [ 94, 157, 140]],
 
-       [[  0,   0, 255],
-        [255, 255,   0]]], dtype=uint8)
+       [[ 83, 161, 148],
+        [ 83, 161, 148],
+        [ 83, 161, 148],
+        ...,
+        [ 93, 156, 139],
+        [ 93, 156, 139],
+        [ 93, 156, 139]],
+
+       [[ 83, 161, 148],
+        [ 83, 161, 148],
+        [ 83, 161, 148],
+        ...,
+        [ 93, 156, 139],
+        [ 92, 155, 138],
+        [ 92, 155, 138]],
+
+       ...,
+
+       [[117, 128, 120],
+        [140, 151, 143],
+        [152, 163, 155],
+        ...,
+        [113, 126, 119],
+        [117, 130, 123],
+        [121, 134, 127]],
+
+       [[128, 139, 131],
+        [129, 140, 132],
+        [124, 135, 127],
+        ...,
+        [112, 125, 118],
+        [114, 127, 120],
+        [116, 129, 122]],
+
+       [[130, 141, 133],
+        [118, 129, 121],
+        [105, 117, 107],
+        ...,
+        [119, 132, 125],
+        [120, 133, 126],
+        [121, 134, 127]]], dtype=uint8)
 </pre></div>
 </div>
 </div>
@@ -2022,7 +1933,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0], dtype=uint8)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([148, 161, 148], dtype=uint8)
 </pre></div>
 </div>
 </div>
@@ -2053,7 +1964,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>132
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>230528
 </pre></div>
 </div>
 </div>
@@ -2066,26 +1977,6 @@ NEAREST
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">95</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
 </pre></div>
 </div>
 </div>
@@ -2107,7 +1998,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0,   0, 255], dtype=uint8)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([148, 161,  83], dtype=uint8)
 </pre></div>
 </div>
 </div>
@@ -2119,7 +2010,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" src="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" />
+<img alt="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" src="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2129,7 +2020,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0c5245267f650402650d6806fe49b0f43bb85c13ed50ad90181ecc1e6f7f0bda.png" src="../_images/0c5245267f650402650d6806fe49b0f43bb85c13ed50ad90181ecc1e6f7f0bda.png" />
+<img alt="../_images/f1c90929dde60c1d17fe8f50d331f8f626329943b4635583851fcf5acda84940.png" src="../_images/f1c90929dde60c1d17fe8f50d331f8f626329943b4635583851fcf5acda84940.png" />
 </div>
 </div>
 <p>Caption from chat: This could be from Dune</p>
@@ -2144,7 +2035,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/111b69c58f7c36b90ad05e9f0c09fc9fd20c0d4a33e6c787acd10ce8d40fad24.png" src="../_images/111b69c58f7c36b90ad05e9f0c09fc9fd20c0d4a33e6c787acd10ce8d40fad24.png" />
+<img alt="../_images/9011008b805ff85459cc7278d65da39fc63ccf786accebc6e0c79a9759c96eec.png" src="../_images/9011008b805ff85459cc7278d65da39fc63ccf786accebc6e0c79a9759c96eec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2158,7 +2049,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d4e0770883c8944bd20b157d53800ce7c2885c3e5f66ee1e2b36b2c1958957f4.png" src="../_images/d4e0770883c8944bd20b157d53800ce7c2885c3e5f66ee1e2b36b2c1958957f4.png" />
+<img alt="../_images/2e87fefce03389716fa40d8f33579b6cd9be68d25f4a225f06ee3be2048ca7d2.png" src="../_images/2e87fefce03389716fa40d8f33579b6cd9be68d25f4a225f06ee3be2048ca7d2.png" />
 </div>
 </div>
 </section>
@@ -2189,25 +2080,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">102</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">B_rb</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
-</pre></div>
-</div>
+<img alt="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" src="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2220,7 +2093,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a307fcdb9a8318944802e5b545aed43f938ae4367510cc3b05e84b47a94e7bfd.png" src="../_images/a307fcdb9a8318944802e5b545aed43f938ae4367510cc3b05e84b47a94e7bfd.png" />
+<img alt="../_images/06612145b6aece43be5cc1628b6c1792280d686907a416b17d7f99a977c4945e.png" src="../_images/06612145b6aece43be5cc1628b6c1792280d686907a416b17d7f99a977c4945e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2233,7 +2106,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4d4bcc83534880ecfbde2d05860cca0ac0c0cf944d284cc4b09a810b91bd6d51.png" src="../_images/4d4bcc83534880ecfbde2d05860cca0ac0c0cf944d284cc4b09a810b91bd6d51.png" />
+<img alt="../_images/92b9f3b4fad7bdf16987127b3d85f5d11420b2700346a0966638959c324185e1.png" src="../_images/92b9f3b4fad7bdf16987127b3d85f5d11420b2700346a0966638959c324185e1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2246,7 +2119,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f9dc2448c3ac8d74ad3c0187e1f1d65a517d487f563b323456c21b54a159605d.png" src="../_images/f9dc2448c3ac8d74ad3c0187e1f1d65a517d487f563b323456c21b54a159605d.png" />
+<img alt="../_images/e03682a292e44d8f1292524321c01b4e88fe0f466fce3bb683a6619d1b002550.png" src="../_images/e03682a292e44d8f1292524321c01b4e88fe0f466fce3bb683a6619d1b002550.png" />
 </div>
 </div>
 </section>
@@ -2271,7 +2144,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" src="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" />
+<img alt="../_images/d2485b5a0975f6c605de997365cb522df0a26a4158f290246e31919e6c4364ec.png" src="../_images/d2485b5a0975f6c605de997365cb522df0a26a4158f290246e31919e6c4364ec.png" />
 </div>
 </div>
 </section>
@@ -2290,25 +2163,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">107</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ash-lake.png&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">img</span>
-
-<span class="nn">File ~\anaconda3\Lib\site-packages\PIL\Image.py:3431,</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3428</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3430</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3431</span>     <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3432</span>     <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">3433</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\Luke\\GitHub\\Math9-WI25\\lectures\\ash-lake.png&#39;
-</pre></div>
-</div>
+<img alt="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" src="../_images/97f5b31ae93ee614881a883de2b372af81c6489db776705ebb3e89f88041b1ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2322,7 +2177,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6d07284fd591293cc98e85d095774754343045dfedbb9e6831c1f98cf246938c.png" src="../_images/6d07284fd591293cc98e85d095774754343045dfedbb9e6831c1f98cf246938c.png" />
+<img alt="../_images/67128f76bc4c24f03d35f7b550366400dec4772f8e34f502331ab2a800a4a723.png" src="../_images/67128f76bc4c24f03d35f7b550366400dec4772f8e34f502331ab2a800a4a723.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2339,7 +2194,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/da5b21ebfdbb27e835f2caba264037d7e97caa01c0d2bd7e01b6723875750b2c.png" src="../_images/da5b21ebfdbb27e835f2caba264037d7e97caa01c0d2bd7e01b6723875750b2c.png" />
+<img alt="../_images/d25853a801427024182c17b17a65fbd324f1f63049e180253720fa5b674afe26.png" src="../_images/d25853a801427024182c17b17a65fbd324f1f63049e180253720fa5b674afe26.png" />
 </div>
 </div>
 <p>An 8-bit integer has a maximum value of 255 (8 digits of binary). An overflow rolls over back to 0. You can think of this as doing operations mod 256. High multiples magnify the difference between colors, which is why the colors start to scatter.</p>
@@ -2356,11 +2211,55 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[765.,   0.,   0.],
-        [  0., 765.,   0.]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[249., 483., 444.],
+        [249., 483., 444.],
+        [249., 483., 444.],
+        ...,
+        [282., 471., 420.],
+        [282., 471., 420.],
+        [282., 471., 420.]],
 
-       [[  0.,   0., 765.],
-        [765., 765.,   0.]]])
+       [[249., 483., 444.],
+        [249., 483., 444.],
+        [249., 483., 444.],
+        ...,
+        [279., 468., 417.],
+        [279., 468., 417.],
+        [279., 468., 417.]],
+
+       [[249., 483., 444.],
+        [249., 483., 444.],
+        [249., 483., 444.],
+        ...,
+        [279., 468., 417.],
+        [276., 465., 414.],
+        [276., 465., 414.]],
+
+       ...,
+
+       [[351., 384., 360.],
+        [420., 453., 429.],
+        [456., 489., 465.],
+        ...,
+        [339., 378., 357.],
+        [351., 390., 369.],
+        [363., 402., 381.]],
+
+       [[384., 417., 393.],
+        [387., 420., 396.],
+        [372., 405., 381.],
+        ...,
+        [336., 375., 354.],
+        [342., 381., 360.],
+        [348., 387., 366.]],
+
+       [[390., 423., 399.],
+        [354., 387., 363.],
+        [315., 351., 321.],
+        ...,
+        [357., 396., 375.],
+        [360., 399., 378.],
+        [363., 402., 381.]]])
 </pre></div>
 </div>
 </div>
@@ -2372,11 +2271,55 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ True, False, False],
-        [False,  True, False]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[False,  True,  True],
+        [False,  True,  True],
+        [False,  True,  True],
+        ...,
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True]],
 
-       [[False, False,  True],
-        [ True,  True, False]]])
+       [[False,  True,  True],
+        [False,  True,  True],
+        [False,  True,  True],
+        ...,
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True]],
+
+       [[False,  True,  True],
+        [False,  True,  True],
+        [False,  True,  True],
+        ...,
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True]],
+
+       ...,
+
+       [[ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True],
+        ...,
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True]],
+
+       [[ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True],
+        ...,
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True]],
+
+       [[ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True],
+        ...,
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True]]])
 </pre></div>
 </div>
 </div>
@@ -2388,11 +2331,55 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[255,   0,   0],
-        [  0, 255,   0]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  0, 255, 255],
+        [  0, 255, 255],
+        [  0, 255, 255],
+        ...,
+        [255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255]],
 
-       [[  0,   0, 255],
-        [255, 255,   0]]])
+       [[  0, 255, 255],
+        [  0, 255, 255],
+        [  0, 255, 255],
+        ...,
+        [255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255]],
+
+       [[  0, 255, 255],
+        [  0, 255, 255],
+        [  0, 255, 255],
+        ...,
+        [255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255]],
+
+       ...,
+
+       [[255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255],
+        ...,
+        [255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255]],
+
+       [[255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255],
+        ...,
+        [255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255]],
+
+       [[255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255],
+        ...,
+        [255, 255, 255],
+        [255, 255, 255],
+        [255, 255, 255]]])
 </pre></div>
 </div>
 </div>
@@ -2404,7 +2391,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" src="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" />
+<img alt="../_images/d066687c7a7416de3927a34c3c51bcceddfe9b84342fbdd57e858f6dbe938ce7.png" src="../_images/d066687c7a7416de3927a34c3c51bcceddfe9b84342fbdd57e858f6dbe938ce7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2415,7 +2402,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" src="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" />
+<img alt="../_images/b0dc3ea7e13a75e8f5eb0eb5f7908f72fa6ff31b0eb014b8063dc3c28d47b4e8.png" src="../_images/b0dc3ea7e13a75e8f5eb0eb5f7908f72fa6ff31b0eb014b8063dc3c28d47b4e8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2431,7 +2418,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" src="../_images/881b823d1869c6259af46372f3a4557e15c0dff24033760233bdcfb9a465e758.png" />
+<img alt="../_images/b0dc3ea7e13a75e8f5eb0eb5f7908f72fa6ff31b0eb014b8063dc3c28d47b4e8.png" src="../_images/b0dc3ea7e13a75e8f5eb0eb5f7908f72fa6ff31b0eb014b8063dc3c28d47b4e8.png" />
 </div>
 </div>
 </section>
@@ -2469,7 +2456,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/85aa7b30258a374c52be57253b5e395a4038ac41646cae24c686cfc7afd87b1f.png" src="../_images/85aa7b30258a374c52be57253b5e395a4038ac41646cae24c686cfc7afd87b1f.png" />
+<img alt="../_images/22b35697a6886b2998dc87321869e45b73970c35b0941bc7efc41068d8219013.png" src="../_images/22b35697a6886b2998dc87321869e45b73970c35b0941bc7efc41068d8219013.png" />
 </div>
 </div>
 <section id="a-better-algorithm-for-grayscale">
@@ -2484,7 +2471,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ce92b1afa79e28129ec2703132813be7209bdf75135a67acdd3a2a390c99be45.png" src="../_images/ce92b1afa79e28129ec2703132813be7209bdf75135a67acdd3a2a390c99be45.png" />
+<img alt="../_images/fca5d467ff8b53433ccbbd587551e94f8bf47469b7bebb15a810de3827897326.png" src="../_images/fca5d467ff8b53433ccbbd587551e94f8bf47469b7bebb15a810de3827897326.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2494,7 +2481,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 2)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(480, 480)
 </pre></div>
 </div>
 </div>
@@ -2517,7 +2504,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/103a7c867cd25c7957c3a90daa96793d335231681d82303a856f175aba6de418.png" src="../_images/103a7c867cd25c7957c3a90daa96793d335231681d82303a856f175aba6de418.png" />
+<img alt="../_images/63163fafa436442b083edb4b5a49eb8db5c06beb2fef6c1df81408568cc528da.png" src="../_images/63163fafa436442b083edb4b5a49eb8db5c06beb2fef6c1df81408568cc528da.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2527,7 +2514,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 2, 3)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(480, 480, 3)
 </pre></div>
 </div>
 </div>
@@ -2546,7 +2533,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6534576230b0d676e81b4f20495124498aa9f503a76bd493d0d77b4a5d63682c.png" src="../_images/6534576230b0d676e81b4f20495124498aa9f503a76bd493d0d77b4a5d63682c.png" />
+<img alt="../_images/caa5a8767357c2b6ba0c371e0e0452d0faa86063e77f0fea624a1b44d42cb923.png" src="../_images/caa5a8767357c2b6ba0c371e0e0452d0faa86063e77f0fea624a1b44d42cb923.png" />
 </div>
 </div>
 </section>
@@ -2567,7 +2554,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7409df419b81f4c88492309815986f880a651714332211338748746f2fa31df7.png" src="../_images/7409df419b81f4c88492309815986f880a651714332211338748746f2fa31df7.png" />
+<img alt="../_images/1ef3d2da35390dd707fdb7bfb280731ea88eb785e4824cc81fb3c191e5e77dbf.png" src="../_images/1ef3d2da35390dd707fdb7bfb280731ea88eb785e4824cc81fb3c191e5e77dbf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2578,7 +2565,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b66632e4f4e548be9d0cfe0c786c94814e4011904dc6e2158aad01940891eae4.png" src="../_images/b66632e4f4e548be9d0cfe0c786c94814e4011904dc6e2158aad01940891eae4.png" />
+<img alt="../_images/f46c4f386cfb767aaac111fa0455bc0e78308ee8e28e0dd266a0136e214e1f87.png" src="../_images/f46c4f386cfb767aaac111fa0455bc0e78308ee8e28e0dd266a0136e214e1f87.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2590,7 +2577,7 @@ NEAREST
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b2c2b17493062d4b6b3559e341a78fb7666b9659633c6a8635ddc1666e8acd80.png" src="../_images/b2c2b17493062d4b6b3559e341a78fb7666b9659633c6a8635ddc1666e8acd80.png" />
+<img alt="../_images/bf5795a7c9670e67eb2ad31ae3ae35915d89f0f562ef26349fc100917103a1a1.png" src="../_images/bf5795a7c9670e67eb2ad31ae3ae35915d89f0f562ef26349fc100917103a1a1.png" />
 </div>
 </div>
 </section>
@@ -2656,7 +2643,8 @@ NEAREST
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2732,8 +2720,8 @@ By Christopher Davis, Yasmeen Baki, and Luke Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
