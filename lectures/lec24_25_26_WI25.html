@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/lec24_25_26_WI25';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python Homework #3" href="../homework/pyhw3.html" />
+    <link rel="next" title="Python Homework #2" href="../homework/pyhw2_WI25.html" />
     <link rel="prev" title="Lectures 22-24" href="lec22_23_24_WI25.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../_static/ash-vapor.png" class="logo__image only-light" alt="Math 9 Winter 2025 - Home"/>
-    <img src="../_static/ash-vapor.png" class="logo__image only-dark pst-js-only" alt="Math 9 Winter 2025 - Home"/>
+    <img src="../_static/ash-vapor2.png" class="logo__image only-light" alt="Math 9 Winter 2025 - Home"/>
+    <img src="../_static/ash-vapor2.png" class="logo__image only-dark pst-js-only" alt="Math 9 Winter 2025 - Home"/>
   
   
 </a></div>
@@ -172,7 +172,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6-7</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lec17_18_19_WI25.html">Lectures 17, 18, 19: February 14, 29, 21</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lec17_18_19_WI25.html">Lectures 17-19</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 8</span></p>
 <ul class="nav bd-sidenav">
@@ -181,18 +181,19 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 9</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../homework/pyhw2.html">Python Homework #2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lec22_23_24_WI25.html">Lectures 22-24</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lectures 24-26</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 10</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../homework/pyhw3.html">Python Homework #3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lec27_28_29_FA24.html">Lectures 27,28,29 From Fall 2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../homework/pyhw2_WI25.html">Python Homework #2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lec27_28_29_FA24.html">Lectures 27-29 from FA24</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../homework/pyhw4.html">Python Homework #4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lec23_24_FA24.html">Lectures 23-24 from FA24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../homework/pyhw2_FA24.html">Python HW #2 from FA24</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../homework/pyhw4_FA24.html">Python HW #4 from FA24</a></li>
 </ul>
 
     </div>
@@ -419,6 +420,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Yasmeen&quot;</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">13</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Yasmeen 13
 </pre></div>
 </div>
 </div>
@@ -469,6 +476,18 @@
 </div>
 </div>
 <p>The issue is that <code class="docutils literal notranslate"><span class="pre">n</span></code> is an integer. Luckily, there’s an easy fix for this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;13&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; nice to meet you &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; times.&quot;</span>
@@ -553,13 +572,51 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4 decimal places, float</span>
-<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.15e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1">#sci. notation, 15 decimal places</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3486784401.0000&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3.486784401000000e+09&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span>
+<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">f</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3486784401.000000&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#float, 3 decimal places</span>
+<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3486784401.000&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#20 places of integer, with blanks for lead digits</span>
+<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">20</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;          3486784401&#39;
 </pre></div>
 </div>
 </div>
@@ -614,6 +671,18 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="si">:</span><span class="s2">.15e</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.867971990792441e-10&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="mi">17</span>
 </pre></div>
 </div>
@@ -627,6 +696,18 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;10001&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">z</span><span class="si">:</span><span class="s2">9b</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1">#b for binary, 9 digits</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;    10001&#39;
 </pre></div>
 </div>
 </div>
@@ -711,6 +792,18 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cap</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;hello&quot;</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello&#39;
 </pre></div>
 </div>
 </div>
@@ -863,7 +956,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dir(np)</span>
-<span class="c1">#commented out because so large</span>
+<span class="c1">#commented out because wow so large</span>
 </pre></div>
 </div>
 </div>
@@ -910,7 +1003,7 @@
 <span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">38</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">45</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">letters</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 
 <span class="nn">File numpy\\random\\_generator.pyx:795,</span> in <span class="ni">numpy.random._generator.Generator.choice</span><span class="nt">()</span>
@@ -929,26 +1022,26 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;R&#39;, &#39;d&#39;, &#39;r&#39;],
-       [&#39;X&#39;, &#39;q&#39;, &#39;Q&#39;],
-       [&#39;L&#39;, &#39;z&#39;, &#39;b&#39;],
-       [&#39;d&#39;, &#39;I&#39;, &#39;W&#39;],
-       [&#39;D&#39;, &#39;e&#39;, &#39;e&#39;],
-       [&#39;K&#39;, &#39;w&#39;, &#39;e&#39;],
-       [&#39;n&#39;, &#39;Z&#39;, &#39;S&#39;],
-       [&#39;Y&#39;, &#39;m&#39;, &#39;G&#39;],
-       [&#39;N&#39;, &#39;V&#39;, &#39;c&#39;],
-       [&#39;a&#39;, &#39;x&#39;, &#39;l&#39;],
-       [&#39;I&#39;, &#39;T&#39;, &#39;x&#39;],
-       [&#39;r&#39;, &#39;r&#39;, &#39;u&#39;],
-       [&#39;s&#39;, &#39;P&#39;, &#39;F&#39;],
-       [&#39;w&#39;, &#39;z&#39;, &#39;N&#39;],
-       [&#39;A&#39;, &#39;v&#39;, &#39;E&#39;],
-       [&#39;O&#39;, &#39;J&#39;, &#39;E&#39;],
-       [&#39;a&#39;, &#39;h&#39;, &#39;E&#39;],
-       [&#39;P&#39;, &#39;E&#39;, &#39;i&#39;],
-       [&#39;R&#39;, &#39;Z&#39;, &#39;F&#39;],
-       [&#39;t&#39;, &#39;s&#39;, &#39;H&#39;]], dtype=&#39;&lt;U1&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;K&#39;, &#39;X&#39;, &#39;B&#39;],
+       [&#39;z&#39;, &#39;F&#39;, &#39;U&#39;],
+       [&#39;t&#39;, &#39;u&#39;, &#39;u&#39;],
+       [&#39;Q&#39;, &#39;b&#39;, &#39;z&#39;],
+       [&#39;L&#39;, &#39;B&#39;, &#39;e&#39;],
+       [&#39;y&#39;, &#39;C&#39;, &#39;g&#39;],
+       [&#39;A&#39;, &#39;H&#39;, &#39;P&#39;],
+       [&#39;j&#39;, &#39;H&#39;, &#39;M&#39;],
+       [&#39;f&#39;, &#39;b&#39;, &#39;N&#39;],
+       [&#39;k&#39;, &#39;s&#39;, &#39;D&#39;],
+       [&#39;k&#39;, &#39;L&#39;, &#39;c&#39;],
+       [&#39;x&#39;, &#39;c&#39;, &#39;n&#39;],
+       [&#39;z&#39;, &#39;C&#39;, &#39;q&#39;],
+       [&#39;C&#39;, &#39;L&#39;, &#39;C&#39;],
+       [&#39;N&#39;, &#39;J&#39;, &#39;U&#39;],
+       [&#39;c&#39;, &#39;n&#39;, &#39;i&#39;],
+       [&#39;w&#39;, &#39;v&#39;, &#39;z&#39;],
+       [&#39;T&#39;, &#39;M&#39;, &#39;Y&#39;],
+       [&#39;y&#39;, &#39;y&#39;, &#39;a&#39;],
+       [&#39;a&#39;, &#39;l&#39;, &#39;i&#39;]], dtype=&#39;&lt;U1&#39;)
 </pre></div>
 </div>
 </div>
@@ -961,7 +1054,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;R&#39;, &#39;d&#39;, &#39;r&#39;], dtype=&#39;&lt;U1&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;K&#39;, &#39;X&#39;, &#39;B&#39;], dtype=&#39;&lt;U1&#39;)
 </pre></div>
 </div>
 </div>
@@ -973,7 +1066,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Rdr&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;KXB&#39;
 </pre></div>
 </div>
 </div>
@@ -986,9 +1079,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Rdr&#39;, &#39;XqQ&#39;, &#39;Lzb&#39;, &#39;dIW&#39;, &#39;Dee&#39;, &#39;Kwe&#39;, &#39;nZS&#39;, &#39;YmG&#39;, &#39;NVc&#39;,
-       &#39;axl&#39;, &#39;ITx&#39;, &#39;rru&#39;, &#39;sPF&#39;, &#39;wzN&#39;, &#39;AvE&#39;, &#39;OJE&#39;, &#39;ahE&#39;, &#39;PEi&#39;,
-       &#39;RZF&#39;, &#39;tsH&#39;], dtype=&#39;&lt;U3&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;KXB&#39;, &#39;zFU&#39;, &#39;tuu&#39;, &#39;Qbz&#39;, &#39;LBe&#39;, &#39;yCg&#39;, &#39;AHP&#39;, &#39;jHM&#39;, &#39;fbN&#39;,
+       &#39;ksD&#39;, &#39;kLc&#39;, &#39;xcn&#39;, &#39;zCq&#39;, &#39;CLC&#39;, &#39;NJU&#39;, &#39;cni&#39;, &#39;wvz&#39;, &#39;TMY&#39;,
+       &#39;yya&#39;, &#39;ali&#39;], dtype=&#39;&lt;U3&#39;)
 </pre></div>
 </div>
 </div>
@@ -1000,9 +1093,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Rdr&#39;, &#39;XqQ&#39;, &#39;Lzb&#39;, &#39;dIW&#39;, &#39;Dee&#39;, &#39;Kwe&#39;, &#39;nZS&#39;, &#39;YmG&#39;, &#39;NVc&#39;,
-       &#39;axl&#39;, &#39;ITx&#39;, &#39;rru&#39;, &#39;sPF&#39;, &#39;wzN&#39;, &#39;AvE&#39;, &#39;OJE&#39;, &#39;ahE&#39;, &#39;PEi&#39;,
-       &#39;RZF&#39;, &#39;tsH&#39;], dtype=&#39;&lt;U3&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;KXB&#39;, &#39;zFU&#39;, &#39;tuu&#39;, &#39;Qbz&#39;, &#39;LBe&#39;, &#39;yCg&#39;, &#39;AHP&#39;, &#39;jHM&#39;, &#39;fbN&#39;,
+       &#39;ksD&#39;, &#39;kLc&#39;, &#39;xcn&#39;, &#39;zCq&#39;, &#39;CLC&#39;, &#39;NJU&#39;, &#39;cni&#39;, &#39;wvz&#39;, &#39;TMY&#39;,
+       &#39;yya&#39;, &#39;ali&#39;], dtype=&#39;&lt;U3&#39;)
 </pre></div>
 </div>
 </div>
@@ -1570,7 +1663,7 @@ set_printoptions(precision=None, threshold=None, edgeitems=None, linewidth=None,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x26d9561b950&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1fee01ffd40&gt;]
 </pre></div>
 </div>
 <img alt="../_images/96a8ecc561d4ab690bbd7dac1cc5f029a4fb4373478dba829c20c80c109dce22.png" src="../_images/96a8ecc561d4ab690bbd7dac1cc5f029a4fb4373478dba829c20c80c109dce22.png" />
@@ -1782,7 +1875,7 @@ y = f'(x_0)(x-x_0) + f(x_0).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\lukea\AppData\Local\Temp\ipykernel_15292\326974613.py:1: RuntimeWarning: invalid value encountered in scalar divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\lukea\AppData\Local\Temp\ipykernel_19100\326974613.py:1: RuntimeWarning: invalid value encountered in scalar divide
   newt = lambda z: z - f(z)/df(z)
 </pre></div>
 </div>
@@ -1909,11 +2002,11 @@ y = f'(x_0)(x-x_0) + f(x_0).
       </div>
     </a>
     <a class="right-next"
-       href="../homework/pyhw3.html"
+       href="../homework/pyhw2_WI25.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python Homework #3</p>
+        <p class="prev-next-title">Python Homework #2</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
