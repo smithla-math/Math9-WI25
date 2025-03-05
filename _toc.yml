@@ -13,16 +13,18 @@ parts:
     - file: lectures/lec19_20_21_WI25
   - caption: "Week 9"
     chapters:
-    - file: homework/pyhw2    
+       
     - file: lectures/lec22_23_24_WI25
     - file: lectures/lec24_25_26_WI25
   - caption: "Week 10"
     chapters:
-      - file: homework/pyhw3
+      - file: homework/pyhw2_WI25
       - file: lectures/lec27_28_29_FA24
   - caption: "Extra"
     chapters:
-      - file: homework/pyhw4
+      - file: lectures/lec23_24_FA24
+      - file: homework/pyhw2_FA24
+      - file: homework/pyhw4_FA24
 
 
 
