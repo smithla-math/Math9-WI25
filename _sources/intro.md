@@ -1,7 +1,7 @@
-# UC Irvine Math 9, SSI 2024
+# UC Irvine Math 9, Winter 2025
 
 
-Welcome to the python portion of Math 9 at UC Irvine during Summer Session I 2024.
+Welcome to the python portion of Math 9 at UC Irvine.
 Here you will find Jupyter notebooks from our lectures.
 
 __Essential Outcomes__
