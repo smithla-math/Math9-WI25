@@ -19,7 +19,7 @@ parts:
   - caption: "Week 10"
     chapters:
       - file: homework/pyhw2_WI25
-      - file: lectures/lec27_28_29_FA24
+      - file: lectures/lec26_27_28_WI25
   - caption: "Extra"
     chapters:
       - file: lectures/lec23_24_FA24
